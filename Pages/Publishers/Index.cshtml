@@ -1,0 +1,22 @@
+﻿@page
+@model Marincas_Bianca_Lab2.Pages.Publishers.IndexModel
+@{
+    ViewData["Title"] = "Publishers";
+}
+
+<h1>Publishers</h1>
+<p><a asp-page="Create">Create New</a></p>
+<table class="table">
+    <thead>
+        <tr><th>Name</th><th>Address</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Publisher)
+        {
+            <tr>
+                <td>@item.PublisherName</td>
+                <td>@item.Adress</td>
+            </tr>
+        }
+    </tbody>
+</table>
