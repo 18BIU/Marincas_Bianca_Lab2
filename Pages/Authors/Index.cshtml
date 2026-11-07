@@ -8,7 +8,7 @@
 <p><a asp-page="Create">Create New</a></p>
 <table class="table">
     <thead>
-        <tr><th>First Name</th><th>Last Name</th></tr>
+        <tr><th>First Name</th><th>Last Name</th><th></th></tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Author)
@@ -16,6 +16,7 @@
             <tr>
                 <td>@item.FirstName</td>
                 <td>@item.LastName</td>
+                <td><a asp-page="./Edit" asp-route-id="@item.ID">Edit</a></td>
             </tr>
         }
     </tbody>
