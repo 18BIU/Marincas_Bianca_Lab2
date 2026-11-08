@@ -1,16 +1,53 @@
-﻿@page
+﻿@page "{id:int?}"
 @model Marincas_Bianca_Lab2.Pages.Categories.IndexModel
+
 @{
-    ViewData["Title"] = "Categories";
+    ViewData["Title"] = "Index";
 }
-<h1>Categories</h1>
-<p><a asp-page="Create">Create New</a></p>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
 <table class="table">
-    <thead><tr><th>ID</th><th>Category</th></tr></thead>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category[0].CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
     <tbody>
-        @foreach (var item in Model.Category)
+        @foreach (var item in Model.CategoryData.Categories)
         {
-            <tr><td>@item.ID</td><td>@item.CategoryName</td></tr>
+            string selectedRow = "";
+            if (item.ID == Model.CategoryID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.ID">Select</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+@if (Model.CategoryData.Books != null)
+{
+    <h3>Books in Selected Category</h3>
+    <table class="table">
+        @foreach (var b in Model.CategoryData.Books)
+        {
+            <tr>
+                <td>@b.Title : @b.Author?.FullName</td>
+            </tr>
+        }
+    </table>
+}
