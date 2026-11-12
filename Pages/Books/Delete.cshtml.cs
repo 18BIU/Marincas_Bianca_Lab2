@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Marincas_Bianca_Lab2.Models;
 using Marincas_Bianca_Lab2.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Marincas_Bianca_Lab2.Pages.Books;
 
+[Authorize(Roles = "Admin")]
 public class DeleteModel : PageModel
 {
     private readonly Marincas_Bianca_Lab2Context _context;
